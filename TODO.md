@@ -1,4 +1,4 @@
 # TODO
 - [ ] Make it worky 👍
 - [ ] Join module classpaths
-- [ ] AP for module meta
+- [x] AP for module meta

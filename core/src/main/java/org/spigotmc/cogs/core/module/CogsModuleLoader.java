@@ -57,7 +57,7 @@ public class CogsModuleLoader {
         try (final CogsModuleClassLoader classLoader = new CogsModuleClassLoader(jar)) {
             classLoader.module().enable();
             this.classLoaders.add(classLoader);
-            LOGGER.info("Module {} loaded!", classLoader.meta().id());
+            LOGGER.info("Module {} v{} loaded!", classLoader.meta().id(), classLoader.meta().version());
         } catch (MalformedURLException exception) {
             throw new RuntimeException("Failed converting URI to URL for jar " + jar.toString() + ": " + exception);
         } catch (IOException exception) {
