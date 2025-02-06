@@ -13,6 +13,7 @@ import org.spigotmc.cogs.api.Cogs;
 import org.spigotmc.cogs.api.CogsAPI;
 import org.spigotmc.cogs.api.config.CogsConfig;
 import org.spigotmc.cogs.api.config.CogsConfigLoader;
+import org.spigotmc.cogs.core.command.CommandListener;
 import org.spigotmc.cogs.core.module.CogsModuleLoader;
 
 public class CogsEntrypoint {
@@ -32,6 +33,8 @@ public class CogsEntrypoint {
 
         final CogsAPI impl = new CogsImpl(api);
         Cogs.impl(impl);
+
+        api.addSlashCommandCreateListener(new CommandListener());
 
         final CogsModuleLoader loader = new CogsModuleLoader();
         final Set<@NonNull Path> modules;

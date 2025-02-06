@@ -2,6 +2,7 @@ package org.spigotmc.cogs.moderation;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.spigotmc.cogs.api.Cogs;
 import org.spigotmc.cogs.api.module.CogModule;
 import org.spigotmc.cogs.api.module.ModuleMeta;
 
@@ -11,6 +12,7 @@ public final class ModerationModule implements CogModule {
 
     @Override
     public void enable() {
+        Cogs.registerCommand(new BanCommand());
         LOGGER.info("Hello, world!");
     }
 
