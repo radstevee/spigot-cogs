@@ -10,4 +10,10 @@ tasks {
     assemble {
         finalizedBy(shadowJar)
     }
+
+    jar {
+        manifest {
+            attributes("Main-Class" to "org.spigotmc.cogs.core.CogsEntrypoint")
+        }
+    }
 }
