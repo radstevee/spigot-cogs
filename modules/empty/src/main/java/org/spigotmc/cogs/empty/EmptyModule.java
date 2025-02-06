@@ -1,18 +1,16 @@
-package org.spigotmc.cogs.moderation;
+package org.spigotmc.cogs.empty;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.spigotmc.cogs.api.Cogs;
 import org.spigotmc.cogs.api.module.CogModule;
 import org.spigotmc.cogs.api.module.ModuleMeta;
 
-@ModuleMeta(id = "moderation")
-public final class ModerationModule implements CogModule {
+@ModuleMeta(id = "empty")
+public final class EmptyModule implements CogModule {
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public void enable() {
-        Cogs.registerCommand(new BanCommand());
         LOGGER.info("Hello, world!");
     }
 
