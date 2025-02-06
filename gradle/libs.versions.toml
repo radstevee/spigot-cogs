@@ -1,0 +1,25 @@
+[versions]
+jetbrains-annotations = "24.0.0"
+javacord = "3.8.0"
+shadow = "9.0.0-beta6"
+log4j = "2.17.1"
+logback = "1.4.12"
+gson = "2.12.1"
+checkers-gradle = "0.6.49"
+checkers-qual = "3.4.0"
+
+[libraries]
+jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrains-annotations" }
+javacord = { group = "org.javacord", name = "javacord", version.ref = "javacord" }
+log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "log4j" }
+log4j-to-slf4j = { group = "org.apache.logging.log4j", name = "log4j-to-slf4j", version.ref = "log4j" }
+logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+checkers-qual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkers-qual" }
+
+[bundles]
+logging = ["log4j-core", "log4j-to-slf4j", "logback"]
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+checkers = { id = "org.checkerframework", version.ref = "checkers-gradle" }
