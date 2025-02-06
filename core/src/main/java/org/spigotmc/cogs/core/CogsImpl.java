@@ -29,9 +29,8 @@ public final class CogsImpl implements CogsAPI {
 
     @Override
     public SlashCommand registerCommand(SlashCommandBuilder builder, SlashCommandCreateListener listener) {
-        // final SlashCommand command = builder.createGlobal(this.api).join();
-        final SlashCommand command =
-                builder.createForServer(this.api, 949365373633974342L).join();
+        final SlashCommand command = builder.createGlobal(this.api).join();
+
         for (final String name : command.getFullCommandNames()) {
             commandMap.putIfAbsent(name, listener);
         }
