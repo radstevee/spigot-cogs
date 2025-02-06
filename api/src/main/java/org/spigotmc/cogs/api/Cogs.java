@@ -14,6 +14,7 @@ public final class Cogs {
 
     /**
      * Adds a message creation listener and returns it.
+     *
      * @param listener The listener.
      * @return The added listener.
      */

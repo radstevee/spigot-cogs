@@ -7,6 +7,7 @@ logback = "1.4.12"
 gson = "2.12.1"
 checkers-gradle = "0.6.49"
 checkers-qual = "3.4.0"
+spotless = "7.0.2"
 
 [libraries]
 jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrains-annotations" }
@@ -23,3 +24,4 @@ logging = ["log4j-core", "log4j-to-slf4j", "logback"]
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 checkers = { id = "org.checkerframework", version.ref = "checkers-gradle" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

@@ -1,12 +1,11 @@
 package org.spigotmc.cogs.api.config;
 
 import com.google.gson.Gson;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class CogsConfigLoader {
     private CogsConfigLoader() {}
