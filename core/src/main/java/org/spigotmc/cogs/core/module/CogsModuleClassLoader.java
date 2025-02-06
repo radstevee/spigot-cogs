@@ -2,10 +2,6 @@ package org.spigotmc.cogs.core.module;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.spigotmc.cogs.api.module.CogModule;
-import org.spigotmc.cogs.api.module.ModuleMeta;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
@@ -14,6 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.spigotmc.cogs.api.module.CogModule;
+import org.spigotmc.cogs.api.module.ModuleMeta;
 
 public class CogsModuleClassLoader extends URLClassLoader {
     private static final Gson GSON = new Gson();
@@ -24,7 +23,7 @@ public class CogsModuleClassLoader extends URLClassLoader {
 
     @SuppressWarnings("unchecked")
     public CogsModuleClassLoader(@NonNull Path jar) throws MalformedURLException {
-        super(new URL[]{jar.toUri().toURL()}, CogsModuleLoader.class.getClassLoader());
+        super(new URL[] {jar.toUri().toURL()}, CogsModuleLoader.class.getClassLoader());
 
         final InputStream configStream = this.getResourceAsStream("config.json");
         if (configStream == null) {
@@ -37,7 +36,8 @@ public class CogsModuleClassLoader extends URLClassLoader {
         try {
             moduleClass = (Class<? extends CogModule>) this.loadClass(this.config.entrypointClass());
         } catch (ClassNotFoundException exception) {
-            throw new RuntimeException("Entrypoint for module " + jar.getFileName().toString() + " does not exist");
+            throw new RuntimeException(
+                    "Entrypoint for module " + jar.getFileName().toString() + " does not exist");
         }
         this.meta = moduleClass.getAnnotation(ModuleMeta.class);
 
@@ -45,29 +45,28 @@ public class CogsModuleClassLoader extends URLClassLoader {
         try {
             constructor = moduleClass.getDeclaredConstructor();
         } catch (NoSuchMethodException exception) {
-            throw new RuntimeException("Module " + moduleClass.getSimpleName() + " does not have a primary constructor: " + exception);
+            throw new RuntimeException(
+                    "Module " + moduleClass.getSimpleName() + " does not have a primary constructor: " + exception);
         }
 
         constructor.setAccessible(true);
         try {
             this.module = constructor.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException exception) {
-            throw new RuntimeException("Failed invoking constructor of module " + moduleClass.getSimpleName() + ": " + exception);
+            throw new RuntimeException(
+                    "Failed invoking constructor of module " + moduleClass.getSimpleName() + ": " + exception);
         }
     }
 
-    @NonNull
-    public ModuleMeta meta() {
+    @NonNull public ModuleMeta meta() {
         return this.meta;
     }
 
-    @NonNull
-    public CogModule module() {
+    @NonNull public CogModule module() {
         return this.module;
     }
 
-    @NonNull
-    public CogsModuleConfiguration config() {
+    @NonNull public CogsModuleConfiguration config() {
         return this.config;
     }
 }

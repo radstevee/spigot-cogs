@@ -32,3 +32,9 @@ allprojects {
         }
     }
 }
+
+tasks.register("runSpotless") {
+    subprojects
+        .filter { project -> project.plugins.hasPlugin(SpotlessPlugin::class.java) }
+        .forEach { project -> dependsOn(project.tasks.getByName("spotlessApply")) }
+}

@@ -1,5 +1,8 @@
 package org.spigotmc.cogs.core;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -12,10 +15,6 @@ import org.spigotmc.cogs.api.config.CogsConfig;
 import org.spigotmc.cogs.api.config.CogsConfigLoader;
 import org.spigotmc.cogs.core.module.CogsModuleLoader;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Set;
-
 public class CogsEntrypoint {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -24,7 +23,8 @@ public class CogsEntrypoint {
         LOGGER.info("Connecting to Discord...");
         final DiscordApi api = new DiscordApiBuilder()
                 .setToken(config.token())
-                //.addIntents(Intent.MESSAGE_CONTENT)
+                .addIntents(Intent.MESSAGE_CONTENT)
+                .addIntents(Intent.GUILDS)
                 .login()
                 .join();
 

@@ -1,12 +1,5 @@
 package org.spigotmc.cogs.core.module;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.spigotmc.cogs.api.module.CogModule;
-import org.spigotmc.cogs.api.module.ModuleMeta;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -16,6 +9,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.spigotmc.cogs.api.module.CogModule;
+import org.spigotmc.cogs.api.module.ModuleMeta;
 
 public class CogsModuleLoader {
     private static final Path MODULES_DIRECTORY = Path.of("modules");
@@ -31,8 +30,7 @@ public class CogsModuleLoader {
         }
     }
 
-    @NonNull
-    public Set<@NonNull Path> collectModuleJars() throws IOException {
+    @NonNull public Set<@NonNull Path> collectModuleJars() throws IOException {
         this.init();
         try (final Stream<Path> walk = Files.walk(CogsModuleLoader.MODULES_DIRECTORY)) {
             return walk.filter((path) -> {
@@ -42,13 +40,9 @@ public class CogsModuleLoader {
 
                         final String fileName = path.getFileName().toString();
 
-                        return Objects.equals(
-                            fileName.substring(fileName.lastIndexOf('.')),
-                            ".jar"
-                        );
-                    }
-                )
-                .collect(Collectors.toSet());
+                        return Objects.equals(fileName.substring(fileName.lastIndexOf('.')), ".jar");
+                    })
+                    .collect(Collectors.toSet());
         }
     }
 
@@ -67,14 +61,12 @@ public class CogsModuleLoader {
         }
     }
 
-    @Nullable
-    public CogModule findById(@NonNull String id) {
-        return this.classLoaders
-            .stream()
-            .filter(loader -> loader.meta().id().equals(id))
-            .map(CogsModuleClassLoader::module)
-            .findFirst()
-            .orElse(null);
+    @Nullable public CogModule findById(@NonNull String id) {
+        return this.classLoaders.stream()
+                .filter(loader -> loader.meta().id().equals(id))
+                .map(CogsModuleClassLoader::module)
+                .findFirst()
+                .orElse(null);
     }
 
     public void unloadModule(@NonNull String id) {
@@ -87,9 +79,6 @@ public class CogsModuleLoader {
     }
 
     public void unloadAllModules() {
-        this.classLoaders
-            .stream()
-            .map(CogsModuleClassLoader::module)
-            .forEach(CogModule::disable);
+        this.classLoaders.stream().map(CogsModuleClassLoader::module).forEach(CogModule::disable);
     }
 }
