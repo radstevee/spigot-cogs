@@ -8,5 +8,7 @@ dependencies {
     api(libs.jetbrains.annotations)
     api(libs.gson)
     api(libs.checkers.qual)
-    api(libs.bundles.logging)
+    api(libs.log4j.core)
+    runtimeOnly(libs.log4j.to.slf4j)
+    runtimeOnly(libs.logback)
 }

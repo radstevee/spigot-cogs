@@ -18,9 +18,6 @@ logback = { group = "ch.qos.logback", name = "logback-classic", version.ref = "l
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 checkers-qual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkers-qual" }
 
-[bundles]
-logging = ["log4j-core", "log4j-to-slf4j", "logback"]
-
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 checkers = { id = "org.checkerframework", version.ref = "checkers-gradle" }
