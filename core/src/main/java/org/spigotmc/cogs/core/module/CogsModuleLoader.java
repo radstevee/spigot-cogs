@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spigotmc.cogs.api.module.CogModule;
+import org.spigotmc.cogs.api.module.ModuleMeta;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -52,12 +53,13 @@ public class CogsModuleLoader {
     }
 
     public void loadModule(@NonNull Path jar) {
-        LOGGER.info("Loading module {}", jar.getFileName().toString());
 
         try (final CogsModuleClassLoader classLoader = new CogsModuleClassLoader(jar)) {
+            final ModuleMeta meta = classLoader.meta();
+            LOGGER.info("Loading module {} v{}", meta.id(), meta.version());
             classLoader.module().enable();
+
             this.classLoaders.add(classLoader);
-            LOGGER.info("Module {} v{} loaded!", classLoader.meta().id(), classLoader.meta().version());
         } catch (MalformedURLException exception) {
             throw new RuntimeException("Failed converting URI to URL for jar " + jar.toString() + ": " + exception);
         } catch (IOException exception) {

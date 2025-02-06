@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.shadow)
-    application
 }
 
 dependencies {
@@ -11,8 +10,4 @@ tasks {
     assemble {
         finalizedBy(shadowJar)
     }
-}
-
-application {
-    mainClass = "org.spigotmc.cogs.core.CogsEntrypoint"
 }
