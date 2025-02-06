@@ -5,7 +5,7 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ModuleMeta {
-    String id() default "";
+    String id();
 
     String version() default "0.0.0";
 }
