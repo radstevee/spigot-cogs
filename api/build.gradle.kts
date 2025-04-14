@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.checkers)
-    `java-library`
 }
 
 dependencies {

@@ -7,10 +7,6 @@ dependencies {
 }
 
 tasks {
-    shadowJar {
-        relocate("META-INF.versions.9.org.apache.logging.log4j", "org.apache.logging.log4j")
-    }
-
     assemble {
         finalizedBy(shadowJar)
     }

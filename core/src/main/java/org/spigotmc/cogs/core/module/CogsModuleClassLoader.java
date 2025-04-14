@@ -46,7 +46,7 @@ public class CogsModuleClassLoader extends URLClassLoader {
             constructor = moduleClass.getDeclaredConstructor();
         } catch (NoSuchMethodException exception) {
             throw new RuntimeException(
-                    "Module " + moduleClass.getSimpleName() + " does not have a primary constructor: " + exception);
+                    "Module " + moduleClass.getSimpleName() + " does not have a primary constructor", exception);
         }
 
         constructor.setAccessible(true);
@@ -54,19 +54,19 @@ public class CogsModuleClassLoader extends URLClassLoader {
             this.module = constructor.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException exception) {
             throw new RuntimeException(
-                    "Failed invoking constructor of module " + moduleClass.getSimpleName() + ": " + exception);
+                    "Failed invoking constructor of module " + moduleClass.getSimpleName(), exception);
         }
     }
 
-    @NonNull public ModuleMeta meta() {
+    public @NonNull ModuleMeta meta() {
         return this.meta;
     }
 
-    @NonNull public CogModule module() {
+    public @NonNull CogModule module() {
         return this.module;
     }
 
-    @NonNull public CogsModuleConfiguration config() {
+    public @NonNull CogsModuleConfiguration config() {
         return this.config;
     }
 }

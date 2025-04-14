@@ -42,12 +42,12 @@ public final class CogsImpl implements CogsAPI {
     @Override
     public boolean handleCommand(SlashCommandCreateEvent event) {
         final String name = event.getSlashCommandInteraction().getFullCommandName();
-        final Optional<SlashCommandCreateListener> listener = Optional.ofNullable(this.commandMap.get(name));
-        if (listener.isEmpty()) {
+        final SlashCommandCreateListener listener = this.commandMap.get(name);
+        if (listener == null) {
             return false;
         }
 
-        listener.get().onSlashCommandCreate(event);
+        listener.onSlashCommandCreate(event);
 
         return true;
     }

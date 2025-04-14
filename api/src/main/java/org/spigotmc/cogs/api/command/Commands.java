@@ -14,7 +14,7 @@ public final class Commands {
      * @param argumentName The argument name.
      * @return The user.
      */
-    @NonNull public static User userArg(SlashCommandInteraction interaction, String argumentName) {
+    public static @NonNull User userArg(SlashCommandInteraction interaction, String argumentName) {
         return interaction.getArgumentUserValueByName(argumentName).get();
     }
 }
