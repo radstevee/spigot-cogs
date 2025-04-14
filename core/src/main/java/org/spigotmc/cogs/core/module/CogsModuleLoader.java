@@ -18,7 +18,7 @@ import org.spigotmc.cogs.api.module.ModuleMeta;
 
 public class CogsModuleLoader {
     private static final Path MODULES_DIRECTORY = Path.of("modules");
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("CogsModuleLoader");
 
     private final Set<CogsModuleClassLoader> classLoaders = new HashSet<>();
 
@@ -30,7 +30,7 @@ public class CogsModuleLoader {
         }
     }
 
-    @NonNull public Set<@NonNull Path> collectModuleJars() throws IOException {
+    public @NonNull Set<@NonNull Path> collectModuleJars() throws IOException {
         this.init();
         try (final Stream<Path> walk = Files.walk(CogsModuleLoader.MODULES_DIRECTORY)) {
             return walk.filter((path) -> {

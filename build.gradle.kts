@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.shadow) apply false
     alias(libs.plugins.checkers) apply false
     alias(libs.plugins.spotless) apply false
+    java
 }
 
 group = "org.spigotmc.cogs"
@@ -33,8 +34,22 @@ allprojects {
     }
 }
 
-tasks.register("runSpotless") {
-    subprojects
-        .filter { project -> project.plugins.hasPlugin(SpotlessPlugin::class.java) }
-        .forEach { project -> dependsOn(project.tasks.getByName("spotlessApply")) }
+tasks.register("lint") {
+    subprojects.forEach { project ->
+        dependsOn(project.tasks.getByName("spotlessApply"))
+    }
+}
+
+tasks.register<JavaExec>("run") {
+    project(":modules").subprojects.forEach { project ->
+        dependsOn(project.tasks["assemble"])
+    }
+
+    classpath = files(project(":core").tasks.getByName("shadowJar"))
+    workingDir = file("run")
+    mainClass = "org.spigotmc.cogs.core.CogsEntrypoint"
+    javaLauncher = javaToolchains.launcherFor {
+        vendor = JvmVendorSpec.JETBRAINS
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }

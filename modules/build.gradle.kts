@@ -10,7 +10,7 @@ subprojects {
             into(rootProject.file("run/modules"))
         }
 
-        build {
+        assemble {
             dependsOn(copy)
         }
     }

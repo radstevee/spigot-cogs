@@ -2,7 +2,7 @@
 jetbrains-annotations = "24.0.0"
 javacord = "3.8.0"
 shadow = "9.0.0-beta6"
-log4j = "2.17.1"
+log4j = "2.24.3"
 logback = "1.4.12"
 gson = "2.12.1"
 checkers-gradle = "0.6.49"

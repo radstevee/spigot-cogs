@@ -7,7 +7,7 @@ import org.spigotmc.cogs.api.module.ModuleMeta;
 
 @ModuleMeta(id = "empty")
 public final class EmptyModule implements CogModule {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("EmptyModule");
 
     @Override
     public void enable() {

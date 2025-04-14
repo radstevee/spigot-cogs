@@ -17,7 +17,7 @@ import org.spigotmc.cogs.core.command.CommandListener;
 import org.spigotmc.cogs.core.module.CogsModuleLoader;
 
 public class CogsEntrypoint {
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger("Cogs");
 
     public static void main(String[] args) {
         final CogsConfig config = CogsConfigLoader.config();
